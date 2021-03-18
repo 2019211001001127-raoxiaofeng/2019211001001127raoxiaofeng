@@ -12,7 +12,7 @@
 </head>
 <body>
     <a href="index.jsp">go to ecjtu</a><!---GET--->
-    <form method="get">
+    <form method="post">
         Name :<input type="text" name="name"></br>
         ID :<input type="text" name="ID"></br>
         <input type="submit" value="send data to server" />
