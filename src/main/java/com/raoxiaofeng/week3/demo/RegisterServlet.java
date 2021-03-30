@@ -43,29 +43,29 @@ public class RegisterServlet extends HttpServlet {
 
 
 
-        Integer id = Integer.valueOf(request.getParameter("id"));
+//        Integer id = Integer.valueOf(request.getParameter("id"));
         String username = request.getParameter("username");//name of input
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String gender = request.getParameter("gender");
         String birthDate = request.getParameter("birthDate");
         //print - write into response
-        /*PrintWriter writer = response.getWriter();
-        writer.println("<br> username :"+username);
-        writer.println("<br> password :"+password);
-        writer.println("<br> email :"+email);
-        writer.println("<br> gender :"+gender);
-        writer.println("<br> birth Date :"+birthDate);
-        writer.close();*/
+//        PrintWriter writer = response.getWriter();
+//        writer.println("<br> username :"+username);
+//        writer.println("<br> password :"+password);
+//        writer.println("<br> email :"+email);
+//        writer.println("<br> gender :"+gender);
+//        writer.println("<br> birth Date :"+birthDate);
+//        writer.close();
         try {
-            String sql = "INSERT INTO usertable(id,username,password,email,gender,birthdate)" + "values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO usertable(username,password,email,gender,birthdate)" + "values(?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, username);
-            ps.setString(3, password);
-            ps.setString(4, email);
-            ps.setString(5, gender);
-            ps.setString(6, birthDate);
+//            ps.setInt(1, id);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, email);
+            ps.setString(4, gender);
+            ps.setString(5, birthDate);
             System.out.println("插入成功");
             ps.executeUpdate();
 
