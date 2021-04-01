@@ -67,6 +67,7 @@ public class RegisterServlet extends HttpServlet {
             ps.setString(5, birthDate);
             System.out.println("插入成功");
             ps.executeUpdate();
+            ps.close();
 
             String select = "SELECT * from usertable";
             PreparedStatement ps1 = con.prepareStatement(select);
@@ -103,6 +104,8 @@ public class RegisterServlet extends HttpServlet {
             }
             out.println("</html>");
             out.close();
+            ps1.close();
+            con.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
