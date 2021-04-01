@@ -60,7 +60,6 @@ public class RegisterServlet extends HttpServlet {
         try {
             String sql = "INSERT INTO usertable(username,password,email,gender,birthdate)" + "values(?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, email);
@@ -89,7 +88,6 @@ public class RegisterServlet extends HttpServlet {
                     "<td>gender</td>\n" +
                     "<td>birthDate</td>\n" +
                     "</tr>");
-
             while (rs.next()) {
                 Id = rs.getString(1);
                 Username = rs.getString(2);
@@ -103,6 +101,7 @@ public class RegisterServlet extends HttpServlet {
                         "<td>" + BirthDate + "</td>\n" +
                         "</tr>");
             }
+            out.println("</html>");
             out.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
