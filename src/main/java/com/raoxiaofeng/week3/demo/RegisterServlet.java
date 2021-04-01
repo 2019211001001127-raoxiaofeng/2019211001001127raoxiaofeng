@@ -65,8 +65,8 @@ public class RegisterServlet extends HttpServlet {
             ps.setString(3, email);
             ps.setString(4, gender);
             ps.setString(5, birthDate);
-            System.out.println("插入成功");
             ps.executeUpdate();
+            System.out.println("插入成功");
             ps.close();
 
             String select = "SELECT * from usertable";
