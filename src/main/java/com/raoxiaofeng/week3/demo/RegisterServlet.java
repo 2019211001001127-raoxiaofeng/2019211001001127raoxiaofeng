@@ -102,6 +102,8 @@ public class RegisterServlet extends HttpServlet {
                         "<td>" + BirthDate + "</td>\n" +
                         "</tr>");
             }
+            out.println("</table>");
+            out.println("</body>");
             out.println("</html>");
             out.close();
             ps1.close();
