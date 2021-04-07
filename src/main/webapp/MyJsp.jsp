@@ -5,17 +5,7 @@
   Time: 14:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <a href="index.jsp">go to ecjtu</a><!---GET--->
-    <form method="post">
-        Name :<input type="text" name="name"></br>
-        ID :<input type="text" name="ID"></br>
-        <input type="submit" value="send data to server" />
-    </form>
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" %>
+<%@include file="header.jsp"%>
+    This is my JSP page.<br>
+<%@include file="footer.jsp"%>>
