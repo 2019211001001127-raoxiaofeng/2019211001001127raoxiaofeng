@@ -1,0 +1,30 @@
+package com.raoxiaofeng.week6.demo;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class SearchServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String txt = request.getParameter("txt");
+        String searchName = request.getParameter("search");
+        if(txt.isEmpty()){
+            response.sendRedirect("index.jsp");
+        }else{
+            if(searchName.equals("baidu")){
+                response.sendRedirect("https://www.baidu.com/s?wd="+txt);
+            }else if(searchName.equals("bing")){
+                response.sendRedirect("https://cn.bing.com/search?q="+txt);
+            }else if(searchName.equals("google")){
+                response.sendRedirect("https://www.google.com/search?q="+txt);
+            }
+        }
+    }
+}

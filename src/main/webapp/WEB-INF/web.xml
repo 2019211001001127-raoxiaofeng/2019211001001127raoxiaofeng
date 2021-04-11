@@ -8,25 +8,25 @@
         <servlet-class>com.raoxiaofeng.week3.demo.LifeCycleServlet</servlet-class>
     </servlet>
     <!--automatic code-->
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:sqlserver://127.0.0.1:1433;DatabaseName=userdb</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>raoxiaofeng0810</param-value>
+    </context-param>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.raoxiaofeng.week3.demo.RegisterServlet</servlet-class>
-        <init-param>
-            <param-name>driver</param-name>
-            <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
-        </init-param>
-        <init-param>
-            <param-name>url</param-name>
-            <param-value>jdbc:sqlserver://127.0.0.1:1433;DatabaseName=userdb</param-value>
-        </init-param>
-        <init-param>
-            <param-name>username</param-name>
-            <param-value>sa</param-value>
-        </init-param>
-        <init-param>
-            <param-name>password</param-name>
-            <param-value>raoxiaofeng0810</param-value>
-        </init-param>
     </servlet>
     <servlet>
         <servlet-name>ConfigDemoServlet</servlet-name>
@@ -40,6 +40,14 @@
             <param-value>2019211001001127</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.raoxiaofeng.week6.demo.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>ConfigDemoServlet</servlet-name>

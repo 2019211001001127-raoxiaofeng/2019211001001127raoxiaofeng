@@ -1,6 +1,7 @@
 package com.raoxiaofeng.week3.demo;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,20 +22,21 @@ public class RegisterServlet extends HttpServlet {
     Connection con = null;
     @Override
     public void init() throws ServletException {
-        ServletConfig config = getServletConfig();
-        String driver = config.getInitParameter("driver");
-        String url = config.getInitParameter("url");
-        String username = config.getInitParameter("username");
-        String password = config.getInitParameter("password");
-
-
-        try{
-            Class.forName(driver);
-            con = DriverManager.getConnection(url,username,password);
-            System.out.println("连接成功");
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        }
+//        ServletContext context = getServletContext();
+//        String driver = context.getInitParameter("driver");
+//        String url = context.getInitParameter("url");
+//        String username = context.getInitParameter("username");
+//        String password = context.getInitParameter("password");
+//
+//
+//        try{
+//            Class.forName(driver);
+//            con = DriverManager.getConnection(url,username,password);
+//            System.out.println("连接成功");
+//        } catch (SQLException | ClassNotFoundException throwables) {
+//            throwables.printStackTrace();
+//        }
+        con= (Connection) getServletContext().getAttribute("con");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,51 +71,60 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("插入成功");
             ps.close();
 
-            String select = "SELECT * from usertable";
-            PreparedStatement ps1 = con.prepareStatement(select);
-            ResultSet rs = ps1.executeQuery();
-            String Id = null;
-            String Username = null;
-            String Password = null;
-            String Email = null;
-            String Gender = null;
-            String BirthDate = null;
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("<HTML>");
-            out.println("<HEAD><TITLE>Usingervlets</TITLE></HEAD>");
-            out.println("<BODY>");
-            out.println("<table border=\"1\">");
-            out.println("<tr>\n" +
-                    "<td>id</td>\n" + "<td>username</td>\n" + "<td>password</td>\n" + "<td>email</td>\n" +
-                    "<td>gender</td>\n" +
-                    "<td>birthDate</td>\n" +
-                    "</tr>");
-            while (rs.next()) {
-                Id = rs.getString(1);
-                Username = rs.getString(2);
-                Password = rs.getString(3);
-                Email = rs.getString(4);
-                Gender = rs.getString(5);
-                BirthDate = rs.getString(6);
-                out.println("<tr>\n" +
-                        "<td>" + Id + "</td>\n" + "<td>" + Username + "</td>\n" + "<td>" + Password + "</td>\n" + "<td>" + Email + "</td>\n" +
-                        "<td>" + Gender + "</td>\n " +
-                        "<td>" + BirthDate + "</td>\n" +
-                        "</tr>");
-            }
-            out.println("</table>");
-            out.println("</body>");
-            out.println("</html>");
-            out.close();
-            ps1.close();
-            con.close();
+            //String select = "SELECT * from usertable";
+           // PreparedStatement ps1 = con.prepareStatement(select);
+           // ResultSet rs = ps1.executeQuery();
+//            String Id = null;
+//            String Username = null;
+//            String Password = null;
+//            String Email = null;
+//            String Gender = null;
+//            String BirthDate = null;
+//            response.setContentType("text/html");
+            //PrintWriter out = response.getWriter();
+//            out.println("<HTML>");
+//            out.println("<HEAD><TITLE>Usingervlets</TITLE></HEAD>");
+//            out.println("<BODY>");
+//            out.println("<table border=\"1\">");
+//            out.println("<tr>\n" +
+//                    "<td>id</td>\n" + "<td>username</td>\n" + "<td>password</td>\n" + "<td>email</td>\n" +
+//                    "<td>gender</td>\n" +
+//                    "<td>birthDate</td>\n" +
+//                    "</tr>");
+//            while (rs.next()) {
+//                Id = rs.getString(1);
+//                Username = rs.getString(2);
+//                Password = rs.getString(3);
+//                Email = rs.getString(4);
+//                Gender = rs.getString(5);
+//                BirthDate = rs.getString(6);
+//                out.println("<tr>\n" +
+//                        "<td>" + Id + "</td>\n" + "<td>" + Username + "</td>\n" + "<td>" + Password + "</td>\n" + "<td>" + Email + "</td>\n" +
+//                        "<td>" + Gender + "</td>\n " +
+//                        "<td>" + BirthDate + "</td>\n" +
+//                        "</tr>");
+//            }
+//            out.println("</table>");
+//            out.println("</body>");
+//            out.println("</html>");
+
+//            request.setAttribute("rsname",rs);
+//
+//            request.getRequestDispatcher("userList.jsp").forward(request,response);
+//            System.out.println("I am in RegisterServlet --> doPost() --> after forward()");
+//            out.close();
+//            ps1.close();
+//            con.close();
+
+        //ok  - done
+
+            response.sendRedirect("login.jsp");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }
