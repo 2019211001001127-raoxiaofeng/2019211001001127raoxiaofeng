@@ -27,7 +27,7 @@ public class JDBCServletContextListener implements ServletContextListener {
         try{
             Class.forName(driver);
             Connection con = DriverManager.getConnection(url,username,password);
-            System.out.println("i am in contextInitialized()"+con);//when?
+            System.out.println("i am in JDBCServletContextListener--> contextInitialized()"+con);//when?
             context.setAttribute("con",con);//name=value
         } catch (ClassNotFoundException | SQLException throwables) {
             throwables.printStackTrace();

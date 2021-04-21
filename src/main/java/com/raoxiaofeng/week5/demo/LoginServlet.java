@@ -1,5 +1,8 @@
 package com.raoxiaofeng.week5.demo;
 
+import com.raoxiaofeng.dao.UserDao;
+import com.raoxiaofeng.model.User;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -31,35 +34,58 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String Username = request.getParameter("Username");
         String Password = request.getParameter("Password");
-        String sql = "select id,username,password,email,gender,birthdate from usertable where username='"+Username+" 'and password='"+Password+"'";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            PrintWriter Out = response.getWriter();
-            if(rs.next()){
-                //week 5 code
-                //Out.println("Login Success!!!");
-                //Out.println("Welcome!"+Username);
-                request.setAttribute("id",rs.getInt("id"));
-                request.setAttribute("username",rs.getString("username"));
-                request.setAttribute("password",rs.getString("password"));
-                request.setAttribute("email",rs.getString("email"));
-                request.setAttribute("gender",rs.getString("gender"));
-                request.setAttribute("birthdate",rs.getString("birthdate"));
 
-                request.getRequestDispatcher("userInfo.jsp").forward(request,response);
-            }else{
-                //Out.println("Username or Password Error!!!");
+        //now move jdbc code in dao - MVC design
+        //write mvc code
+        //use model and dao
+        UserDao userDao = new UserDao();
+        try {
+            User user = userDao.findByUsernamePassword(con,Username,Password);
+            //forward - jsp
+            if(user!=null){
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else {
                 request.setAttribute("message","Username or Password Error!!!");
-                request.getRequestDispatcher("login.jsp").forward(request,response);
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+
+//        String sql = "select id,username,password,email,gender,birthdate from usertable where username='"+Username+" 'and password='"+Password+"'";
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+//            PrintWriter Out = response.getWriter();
+//            if(rs.next()){
+//                //week 5 code
+//                //Out.println("Login Success!!!");
+//                //Out.println("Welcome!"+Username);
+//                request.setAttribute("id",rs.getInt("id"));
+//                request.setAttribute("username",rs.getString("username"));
+//                request.setAttribute("password",rs.getString("password"));
+//                request.setAttribute("email",rs.getString("email"));
+//                request.setAttribute("gender",rs.getString("gender"));
+//                request.setAttribute("birthdate",rs.getString("birthdate"));
+//
+//                request.getRequestDispatcher("userInfo.jsp").forward(request,response);
+//            }else{
+//                //Out.println("Username or Password Error!!!");
+//                request.setAttribute("message","Username or Password Error!!!");
+//                request.getRequestDispatcher("login.jsp").forward(request,response);
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);//call doPost
+        //doPost(request,response);//call doPost
+
+        //when click login menu - request is get
+        request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
     }
 }

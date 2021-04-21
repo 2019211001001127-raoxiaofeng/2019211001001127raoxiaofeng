@@ -71,6 +71,7 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("插入成功");
             ps.close();
 
+
             //String select = "SELECT * from usertable";
            // PreparedStatement ps1 = con.prepareStatement(select);
            // ResultSet rs = ps1.executeQuery();
