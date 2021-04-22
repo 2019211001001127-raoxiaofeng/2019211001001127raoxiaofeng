@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserDao implements IUserDao{
     @Override
-    public int saveUser(Connection con, User user) throws SQLException {
+    public boolean saveUser(Connection con, User user) throws SQLException {
         //insert..into usertable -- write code yourself
         String sql = "INSERT INTO usertable(username,password,email,gender,birthdate)" + "values(?,?,?,?,?)";
         PreparedStatement st = con.prepareStatement(sql);
@@ -23,7 +23,11 @@ public class UserDao implements IUserDao{
         st.setDate(5, (java.sql.Date) user.getBirthdate());
         int a =st.executeUpdate();
         st.close();
-        return a;
+        if(a>0){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
