@@ -32,10 +32,9 @@ public class UserDao implements IUserDao{
         //delete .... where id = ?
         String sql = "delete from usertable where id='"+user.getId()+"'";
         PreparedStatement st = con.prepareStatement(sql);
-        st.executeUpdate();
+        int a = st.executeUpdate();
         st.close();
-
-        return 1;
+        return a;
     }
 
     @Override
@@ -48,9 +47,9 @@ public class UserDao implements IUserDao{
                 +"birthdate = '" + user.getBirthdate()+"'"
                 +"where id = " + user.getId();
         PreparedStatement st = con.prepareStatement(sql);
-        st.executeUpdate();
+        int a = st.executeUpdate();
         st.close();
-        return 1;
+        return a;
     }
 
     @Override
