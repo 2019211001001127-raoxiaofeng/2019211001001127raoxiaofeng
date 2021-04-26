@@ -8,9 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -43,7 +41,34 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.findByUsernamePassword(con,Username,Password);
             //forward - jsp
             if(user!=null){
-                request.setAttribute("user",user);
+                //add code for remember me
+                String rememberMe = request.getParameter("rememberMe");//1=checked
+                if(rememberMe!=null && rememberMe.equals("1")){
+                    Cookie usernameCookie = new Cookie("cUsername",user.getUsername());
+                    Cookie passwordCookie = new Cookie("cPassword",user.getPassword());
+                    Cookie rememberMeCookie = new Cookie("cRememberMe",rememberMe);
+                    usernameCookie.setMaxAge(5);
+                    passwordCookie.setMaxAge(5);
+                    rememberMeCookie.setMaxAge(5);
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                    response.addCookie(rememberMeCookie);
+                }
+
+                //week 8 demo #2
+                HttpSession session =request.getSession();
+                System.out.println("session id -->"+session.getId());
+                session.setMaxInactiveInterval(10);
+                //week 8 demo #1 - used cookie for session
+                //create cookie
+                //step1: create an object of cookie class
+                //Cookie c = new Cookie("sessionid",""+user.getId());//sessionid - user- id
+                //step2: set age of cookie
+                //c.setMaxAge(10*60);//in sec
+                //step3: add cookie into response
+                 //   response.addCookie(c);
+                //week 8 0-change request(one page) to session - so we can get session attribute in many jsp page - login.jsp and header.jsp
+                session.setAttribute("user",user);//set user info in session
                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
             }else {
                 request.setAttribute("message","Username or Password Error!!!");
