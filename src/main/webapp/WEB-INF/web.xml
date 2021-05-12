@@ -64,5 +64,29 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file><!-- when upi run app - first request send to home... - HomeServlet-->
     </welcome-file-list>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.raoxiaofeng.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>HelloFilter</filter-name>
+        <filter-class>com.raoxiaofeng.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>LoggerFilter</filter-name>
+        <filter-class>com.raoxiaofeng.filter.LoggerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggerFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
 
 </web-app>

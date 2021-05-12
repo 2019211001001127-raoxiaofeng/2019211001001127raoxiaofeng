@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
 <%@include file="header.jsp"%>
     <h1>User List</h1>
     <table border="1">
@@ -24,13 +25,22 @@
             </td>
         </tr>
         <%}else {
-            while (rs.next()) {
-                out.println("<tr>\n" +
-                        "<td>" + rs.getInt("id") + "</td>\n" + "<td>" + rs.getString("username") + "</td>\n" + "<td>"
-                        + rs.getString("password") + "</td>\n" + "<td>" + rs.getString("email") + "</td>\n" +
-                        "<td>" + rs.getString("gender") + "</td>\n " +
-                        "<td>" + rs.getString("birthdate") + "</td>\n" +
-                        "</tr>");
+            while (true) {
+                try {
+                    if (!rs.next()) break;
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                try {
+                    out.println("<tr>\n" +
+                            "<td>" + rs.getInt("id") + "</td>\n" + "<td>" + rs.getString("username") + "</td>\n" + "<td>"
+                            + rs.getString("password") + "</td>\n" + "<td>" + rs.getString("email") + "</td>\n" +
+                            "<td>" + rs.getString("gender") + "</td>\n " +
+                            "<td>" + rs.getString("birthdate") + "</td>\n" +
+                            "</tr>");
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         }
         %>

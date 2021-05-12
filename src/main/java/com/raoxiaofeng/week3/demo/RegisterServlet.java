@@ -72,9 +72,9 @@ public class RegisterServlet extends HttpServlet {
             ps.close();
 
 
-            //String select = "SELECT * from usertable";
-           // PreparedStatement ps1 = con.prepareStatement(select);
-           // ResultSet rs = ps1.executeQuery();
+//            String select = "SELECT * from usertable";
+//            PreparedStatement ps1 = con.prepareStatement(select);
+//            ResultSet rs = ps1.executeQuery();
 //            String Id = null;
 //            String Username = null;
 //            String Password = null;
@@ -82,7 +82,7 @@ public class RegisterServlet extends HttpServlet {
 //            String Gender = null;
 //            String BirthDate = null;
 //            response.setContentType("text/html");
-            //PrintWriter out = response.getWriter();
+//            PrintWriter out = response.getWriter();
 //            out.println("<HTML>");
 //            out.println("<HEAD><TITLE>Usingervlets</TITLE></HEAD>");
 //            out.println("<BODY>");
@@ -109,23 +109,23 @@ public class RegisterServlet extends HttpServlet {
 //            out.println("</body>");
 //            out.println("</html>");
 
-//            request.setAttribute("rsname",rs);
-//
-//            request.getRequestDispatcher("userList.jsp").forward(request,response);
-//            System.out.println("I am in RegisterServlet --> doPost() --> after forward()");
+           // request.setAttribute("rsname",rs);
+
+            //request.getRequestDispatcher("userList.jsp").forward(request,response);
+            //System.out.println("I am in RegisterServlet --> doPost() --> after forward()");
 //            out.close();
 //            ps1.close();
 //            con.close();
 
         //ok  - done
 
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 }

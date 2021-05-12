@@ -30,8 +30,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String Username = request.getParameter("Username");
-        String Password = request.getParameter("Password");
+        String Username = request.getParameter("username");
+        String Password = request.getParameter("password");
 
         //now move jdbc code in dao - MVC design
         //write mvc code
