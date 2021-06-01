@@ -2,13 +2,21 @@ package com.raoxiaofeng.model;
 
 public class Item {
     private Product product;
-    private int qunatity;
+    private int quantity;
 
     public Item(){}
 
-    public Item(Product product, int qunatity) {
+    public Item(Product product, int quantity) {
         this.product = product;
-        this.qunatity = qunatity;
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "product=" + product +
+                ", quantity=" + quantity +
+                '}';
     }
 
     public Product getProduct() {
@@ -19,19 +27,11 @@ public class Item {
         this.product = product;
     }
 
-    public int getQunatity() {
-        return qunatity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQunatity(int qunatity) {
-        this.qunatity = qunatity;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "product=" + product +
-                ", qunatity=" + qunatity +
-                '}';
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

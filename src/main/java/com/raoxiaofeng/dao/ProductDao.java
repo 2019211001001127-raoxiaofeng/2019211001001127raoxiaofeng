@@ -69,7 +69,7 @@ public class ProductDao implements  IProductDao{
         PreparedStatement pt = con.prepareStatement(sql);
         ResultSet rs = pt.executeQuery();
         Product product = null;
-        if(rs.next()){
+        while (rs.next()){
             product = new Product();
             product.setProductId(productId);
             product.setProductName(rs.getString("productName"));
@@ -86,7 +86,7 @@ public class ProductDao implements  IProductDao{
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         List<Product> Product = new ArrayList<Product>();
-        if(rs.next()){
+        while (rs.next()){
             Product product = new Product();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
@@ -105,7 +105,7 @@ public class ProductDao implements  IProductDao{
         ResultSet rs = ps.executeQuery();
         List<Product> Product = null;
         Product product;
-        if(rs.next()){
+        while (rs.next()){
             product = new Product();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
@@ -125,7 +125,7 @@ public class ProductDao implements  IProductDao{
         ResultSet rs = ps.executeQuery();
         List<Product> list = new ArrayList<Product>();
         Product product;
-        if(rs.next()){
+        while(rs.next()){
             product = new Product();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
@@ -145,7 +145,7 @@ public class ProductDao implements  IProductDao{
         ResultSet rs = ps.executeQuery();
         List<Product> Product = null;
         Product product;
-        if(rs.next()){
+        while(rs.next()){
             product = new Product();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
@@ -165,7 +165,7 @@ public class ProductDao implements  IProductDao{
         ResultSet rs = ps.executeQuery();
         List<Product> Product = null;
         Product product;
-        if(rs.next()){
+        while (rs.next()){
             product = new Product();
             product.setProductId(rs.getInt("productId"));
             product.setPicture(rs.getBinaryStream("picture"));

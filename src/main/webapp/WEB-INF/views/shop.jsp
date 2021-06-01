@@ -57,7 +57,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="<%=basePath%>getImg?id=1" alt="" style="height: 150px; width: 150px"/>
+										<img src="<%=basePath%>getImg?id=${p.productId}" alt="" style="height: 150px; width: 150px"/>
 										<h2>${p.price} </h2>
 										<p>${p.productName}</p>
 										<a href="<%=basePath %>cart?productId=${p.productId}&action=add" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
