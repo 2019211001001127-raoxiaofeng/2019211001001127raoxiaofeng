@@ -42,7 +42,7 @@
 					
 						<tr>
 							<td class="cart_product">
-								<a href="productDetails?productId=productId "><img src="getImg?id=${c.product.productId}" alt="" style="height: 150px; width: 150px"></a>
+								<a href="productDetails?productId=${c.product.productId}"><img src="getImg?id=${c.product.productId}" alt="" style="height: 150px; width: 150px"></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">${c.product.productName}</a></h4>
