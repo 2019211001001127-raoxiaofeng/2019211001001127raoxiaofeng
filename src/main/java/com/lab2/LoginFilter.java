@@ -14,7 +14,6 @@ public class LoginFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         System.out.println("i am in LoginFilter--doFilter()--request before chain");
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         if(req.getSession()!=null&&req.getSession().isNew()){
