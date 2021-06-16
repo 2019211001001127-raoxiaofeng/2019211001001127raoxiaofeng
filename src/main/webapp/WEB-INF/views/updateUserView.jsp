@@ -1,4 +1,4 @@
-<%@ page import="com.dabing.model.User" %>
+<%@ page import="com.raoxiaofeng.model.User" %>
 <%@ page import="java.util.List" %>
  
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
