@@ -78,7 +78,7 @@
 </body>
 <script>
     function submitForm(action){
-        var form=document.getElementById("form");
+        let form=document.getElementById("form");
         if(action==="Add")
             document.forms["form"]["action"].value="Add";
         else if(action==="Subtract")
