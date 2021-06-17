@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-
+ 
 @WebServlet(name = "CalServlet", value = "/lab3/CalServlet")
 public class CalServlet extends HttpServlet {
     private int add(int firstVal,int secondVal) {
