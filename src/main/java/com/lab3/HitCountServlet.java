@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "HitCountServlet",value = "/HitCountServlet")
 public class HitCountServlet extends HttpServlet {
+    private int n=0;
     @Override
     public void init() throws ServletException {
         super.init();
@@ -20,9 +21,10 @@ public class HitCountServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        n++;
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("<div style='text-align:center;'><h2>Total Number of Hits</h2></div>");
-        out.println("<div style='text-align:center;'><h4>27</h4></div>");
+        out.println("<div style='text-align:center;'><h4>"+n+"</h4></div>");
     }
 }
